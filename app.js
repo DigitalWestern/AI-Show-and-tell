@@ -61,6 +61,20 @@ const packet = {
       title: "Booz Allen 5.950% senior notes due 2035",
       url: "https://investors.boozallen.com/news-releases/news-release-details/booz-allen-hamilton-announces-pricing-senior-notes-offering-1",
       note: "The company priced $650M of 5.950% senior notes due 2035, guaranteed on a senior unsecured basis, with proceeds used for general corporate purposes and revolver repayment."
+    },
+    {
+      id: "equityHistory",
+      label: "Equity history",
+      title: "Macrotrends BAH annual stock price history",
+      url: "https://www.macrotrends.net/stocks/charts/BAH/booz-allen-hamilton/stock-price-history",
+      note: "Annual BAH stock closes show the equity rising through 2024 before declining in 2025 and 2026."
+    },
+    {
+      id: "bondQuote",
+      label: "Bond quote",
+      title: "Finanzen.net BAH 5.950% 2035 bond quote",
+      url: "https://www.finanzen.net/anleihen/a4d8gw-booz-allen-hamilton-anleihe",
+      note: "Public bond quote page for the 5.950% senior notes due 2035; five-year public trading history is not embedded in this demo."
     }
   ],
   roles: [
@@ -359,6 +373,38 @@ const workflow = {
     recommendation: "Watchlist; no trade today",
     summary:
       "The agents agree Booz Allen is not a near-term distressed credit and remains strategically relevant, but they also agree there is no actionable trade in the packet. FY2026 showed real revenue pressure and Civil weakness, while cash flow and backlog remain supportive. The final blocker is price: without live bond spreads, peer comps, covenant detail, and a downside case, the chair would keep it on watchlist rather than allocate capital."
+  },
+  marketCharts: {
+    equity: {
+      title: "BAH equity price",
+      subtitle: "Year-end close, public annual history",
+      unit: "$",
+      sourceIds: ["equityHistory"],
+      points: [
+        { label: "2021", value: 80.65 },
+        { label: "2022", value: 101.38 },
+        { label: "2023", value: 126.17 },
+        { label: "2024", value: 128.7 },
+        { label: "2025", value: 112.25 },
+        { label: "2026", value: 73.38 }
+      ],
+      note: "Equity repricing supports the chair's view that the market is more skeptical, but it does not prove the bonds are cheap."
+    },
+    bond: {
+      title: "BAH bond spread proxy",
+      subtitle: "Illustrative placeholder until TRACE/Bloomberg data is added",
+      unit: "bps",
+      sourceIds: ["notes2035", "bondQuote"],
+      points: [
+        { label: "2021", value: 135 },
+        { label: "2022", value: 185 },
+        { label: "2023", value: 165 },
+        { label: "2024", value: 145 },
+        { label: "2025", value: 175 },
+        { label: "2026", value: 230 }
+      ],
+      note: "This is intentionally not presented as actual BAH trading history; it marks the exact data gap the chair wants filled before more work."
+    }
   }
 };
 
@@ -385,6 +431,7 @@ function onClick(element, handler) {
 
 const roleList = document.querySelector("#role-list");
 const sourceList = document.querySelector("#source-list");
+const marketChartList = document.querySelector("#market-chart-list");
 const chairHeadline = document.querySelector("#chair-headline");
 const chairRuling = document.querySelector("#chair-ruling");
 const chairAnalysis = document.querySelector("#chair-analysis");
@@ -497,6 +544,80 @@ function renderChairDecision() {
     .join(""));
 }
 
+function lineChartPath(points, width, height, padding) {
+  const values = points.map((point) => point.value);
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const range = max - min || 1;
+  return points
+    .map((point, index) => {
+      const x = padding + (index / (points.length - 1 || 1)) * (width - padding * 2);
+      const y = height - padding - ((point.value - min) / range) * (height - padding * 2);
+      return `${index === 0 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`;
+    })
+    .join(" ");
+}
+
+function renderMarketChart(chart, tone) {
+  const width = 360;
+  const height = 150;
+  const padding = 22;
+  const values = chart.points.map((point) => point.value);
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const start = chart.points[0];
+  const end = chart.points[chart.points.length - 1];
+  const path = lineChartPath(chart.points, width, height, padding);
+  const chips = chart.sourceIds
+    .map((id) => {
+      const source = sourceById(id);
+      return `<a class="source-chip" href="${source.url}" target="_blank" rel="noreferrer">${source.label}</a>`;
+    })
+    .join("");
+
+  return `
+    <article class="market-chart-card ${tone}">
+      <div class="chart-heading">
+        <div>
+          <h3>${chart.title}</h3>
+          <p>${chart.subtitle}</p>
+        </div>
+        <strong>${end.value}${chart.unit}</strong>
+      </div>
+      <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${chart.title}">
+        <line x1="${padding}" y1="${height - padding}" x2="${width - padding}" y2="${height - padding}" />
+        <line x1="${padding}" y1="${padding}" x2="${padding}" y2="${height - padding}" />
+        <path d="${path}" />
+        ${chart.points
+          .map((point, index) => {
+            const x = padding + (index / (chart.points.length - 1 || 1)) * (width - padding * 2);
+            const y = height - padding - ((point.value - min) / (max - min || 1)) * (height - padding * 2);
+            return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5"><title>${point.label}: ${point.value}${chart.unit}</title></circle>`;
+          })
+          .join("")}
+        <text x="${padding}" y="${height - 6}">${start.label}</text>
+        <text x="${width - padding}" y="${height - 6}" text-anchor="end">${end.label}</text>
+      </svg>
+      <div class="chart-range">
+        <span>Low ${min}${chart.unit}</span>
+        <span>High ${max}${chart.unit}</span>
+      </div>
+      <p class="chart-note">${chart.note}</p>
+      <div class="source-chips">${chips}</div>
+    </article>
+  `;
+}
+
+function renderMarketCharts() {
+  setHTML(
+    marketChartList,
+    `
+      ${renderMarketChart(workflow.marketCharts.equity, "equity")}
+      ${renderMarketChart(workflow.marketCharts.bond, "bond")}
+    `
+  );
+}
+
 function renderWorkflow() {
   setHTML(workflowStageList, workflow.evidence
     .map(
@@ -590,7 +711,7 @@ function renderWorkflow() {
     .join(""));
 
   setHTML(sourceRunList, packet.sources
-    .filter((source) => ["fy26", "debt", "treasury", "valuation", "notes2035"].includes(source.id))
+    .filter((source) => ["fy26", "debt", "treasury", "valuation", "notes2035", "equityHistory", "bondQuote"].includes(source.id))
     .map(
       (source) => `
         <li>
@@ -685,4 +806,5 @@ renderSources();
 renderMemo();
 renderChairDecision();
 renderWorkflow();
+renderMarketCharts();
 updateProgress();

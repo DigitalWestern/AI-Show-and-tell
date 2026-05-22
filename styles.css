@@ -642,6 +642,97 @@ details p {
   font-size: 0.84rem;
 }
 
+.market-chart-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.market-chart-card {
+  padding: 14px;
+  border: 1px solid var(--faint);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.chart-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.chart-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.chart-heading strong {
+  color: var(--accent-strong);
+  font-size: 0.98rem;
+}
+
+.market-chart-card.bond .chart-heading strong {
+  color: var(--amber);
+}
+
+.market-chart-card svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+.market-chart-card line {
+  stroke: #d7e0e2;
+  stroke-width: 1;
+}
+
+.market-chart-card path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.market-chart-card.bond path {
+  stroke: var(--amber);
+}
+
+.market-chart-card circle {
+  fill: var(--surface);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.market-chart-card.bond circle {
+  stroke: var(--amber);
+}
+
+.market-chart-card text {
+  fill: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.chart-range {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 750;
+}
+
+.chart-note {
+  margin: 8px 0 0;
+  color: #34434c;
+  font-size: 0.8rem;
+}
+
 .rule-panel p:last-child {
   margin-bottom: 0;
   color: #34434c;
@@ -868,6 +959,7 @@ details p {
   .workflow-hero,
   .workflow-grid,
   .chair-grid,
+  .market-chart-list,
   .agent-run-grid,
   .disagreement-card dl,
   .memo-columns {
