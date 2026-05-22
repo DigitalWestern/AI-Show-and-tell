@@ -359,6 +359,24 @@ const workflow = {
 let revealedCount = 0;
 let revealTimer = null;
 
+function setHTML(element, html) {
+  if (element) {
+    element.innerHTML = html;
+  }
+}
+
+function setText(element, text) {
+  if (element) {
+    element.textContent = text;
+  }
+}
+
+function onClick(element, handler) {
+  if (element) {
+    element.addEventListener("click", handler);
+  }
+}
+
 const roleList = document.querySelector("#role-list");
 const sourceList = document.querySelector("#source-list");
 const chairHeadline = document.querySelector("#chair-headline");
@@ -383,7 +401,7 @@ function sourceById(id) {
 }
 
 function renderRoles() {
-  roleList.innerHTML = packet.roles
+  setHTML(roleList, packet.roles
     .map((item, index) => {
       const chips = item.sources
         .map((id) => {
@@ -421,11 +439,11 @@ function renderRoles() {
         </article>
       `;
     })
-    .join("");
+    .join(""));
 }
 
 function renderSources() {
-  sourceList.innerHTML = packet.sources
+  setHTML(sourceList, packet.sources
     .map(
       (source) => `
         <li>
@@ -434,22 +452,22 @@ function renderSources() {
         </li>
       `
     )
-    .join("");
+    .join(""));
 }
 
 function renderMemo() {
-  document.querySelector("#memo-thesis").innerHTML = packet.memo.thesis.map((item) => `<li>${item}</li>`).join("");
-  document.querySelector("#memo-risks").innerHTML = packet.memo.risks.map((item) => `<li>${item}</li>`).join("");
-  document.querySelector("#memo-questions").innerHTML = packet.memo.questions.map((item) => `<li>${item}</li>`).join("");
-  document.querySelector("#memo-sources").innerHTML = packet.sources
+  setHTML(document.querySelector("#memo-thesis"), packet.memo.thesis.map((item) => `<li>${item}</li>`).join(""));
+  setHTML(document.querySelector("#memo-risks"), packet.memo.risks.map((item) => `<li>${item}</li>`).join(""));
+  setHTML(document.querySelector("#memo-questions"), packet.memo.questions.map((item) => `<li>${item}</li>`).join(""));
+  setHTML(document.querySelector("#memo-sources"), packet.sources
     .map((source) => `<li><a href="${source.url}" target="_blank" rel="noreferrer">${source.title}</a>: ${source.note}</li>`)
-    .join("");
+    .join(""));
 }
 
 function renderChairDecision() {
-  chairHeadline.textContent = packet.chairDecision.headline;
-  chairRuling.textContent = packet.chairDecision.ruling;
-  chairWeights.innerHTML = packet.chairDecision.weights
+  setText(chairHeadline, packet.chairDecision.headline);
+  setText(chairRuling, packet.chairDecision.ruling);
+  setHTML(chairWeights, packet.chairDecision.weights
     .map(
       (item) => `
         <li>
@@ -458,8 +476,8 @@ function renderChairDecision() {
         </li>
       `
     )
-    .join("");
-  chairDecisions.innerHTML = packet.chairDecision.decisions
+    .join(""));
+  setHTML(chairDecisions, packet.chairDecision.decisions
     .map(
       (item) => `
         <li>
@@ -468,11 +486,11 @@ function renderChairDecision() {
         </li>
       `
     )
-    .join("");
+    .join(""));
 }
 
 function renderWorkflow() {
-  workflowStageList.innerHTML = workflow.evidence
+  setHTML(workflowStageList, workflow.evidence
     .map(
       (item, index) => {
         const chips = item.sourceIds
@@ -494,9 +512,9 @@ function renderWorkflow() {
       `;
       }
     )
-    .join("");
+    .join(""));
 
-  agentRunList.innerHTML = workflow.agents
+  setHTML(agentRunList, workflow.agents
     .map(
       (agent) => `
         <article class="agent-run-card ${agent.tone}">
@@ -522,9 +540,9 @@ function renderWorkflow() {
         </article>
       `
     )
-    .join("");
+    .join(""));
 
-  disagreementList.innerHTML = workflow.disagreements
+  setHTML(disagreementList, workflow.disagreements
     .map(
       (item) => `
         <article class="disagreement-card">
@@ -546,9 +564,9 @@ function renderWorkflow() {
         </article>
       `
     )
-    .join("");
+    .join(""));
 
-  scoringList.innerHTML = workflow.scoring
+  setHTML(scoringList, workflow.scoring
     .map(
       ([category, weight, score, note]) => `
         <li>
@@ -557,13 +575,13 @@ function renderWorkflow() {
         </li>
       `
     )
-    .join("");
+    .join(""));
 
-  templateList.innerHTML = workflow.nextDiligence
+  setHTML(templateList, workflow.nextDiligence
     .map((item) => `<li>${item}</li>`)
-    .join("");
+    .join(""));
 
-  sourceRunList.innerHTML = packet.sources
+  setHTML(sourceRunList, packet.sources
     .filter((source) => ["fy26", "debt", "treasury", "valuation", "notes2035"].includes(source.id))
     .map(
       (source) => `
@@ -573,21 +591,25 @@ function renderWorkflow() {
         </li>
       `
     )
-    .join("");
+    .join(""));
 
-  runRecommendation.textContent = workflow.conclusion.recommendation;
-  runConclusion.textContent = workflow.conclusion.summary;
+  setText(runRecommendation, workflow.conclusion.recommendation);
+  setText(runConclusion, workflow.conclusion.summary);
 }
 
 function updateProgress() {
   const percent = Math.round((revealedCount / packet.roles.length) * 100);
-  progressBar.style.width = `${percent}%`;
-  progressCopy.textContent =
+  if (progressBar) {
+    progressBar.style.width = `${percent}%`;
+  }
+  setText(
+    progressCopy,
     revealedCount === 0
       ? "Ready to reveal a prebuilt AI research workflow."
       : revealedCount === packet.roles.length
         ? `Committee review complete: ${packet.company.recommendation}.`
-        : `Revealed ${revealedCount} of ${packet.roles.length} committee roles.`;
+        : `Revealed ${revealedCount} of ${packet.roles.length} committee roles.`
+  );
 }
 
 function revealNext() {
@@ -595,21 +617,26 @@ function revealNext() {
     clearInterval(revealTimer);
     revealTimer = null;
     runButton.disabled = false;
-    runButton.querySelector("span").textContent = "Replay Committee Review";
+    setText(runButton.querySelector("span"), "Replay Committee Review");
     updateProgress();
     return;
   }
 
   const card = document.querySelector(`[data-index="${revealedCount}"]`);
-  card.classList.add("revealed");
+  if (card) {
+    card.classList.add("revealed");
+  }
   revealedCount += 1;
   updateProgress();
 }
 
 function runReview() {
+  if (!runButton) {
+    return;
+  }
   resetReview();
   runButton.disabled = true;
-  runButton.querySelector("span").textContent = "Review Running";
+  setText(runButton.querySelector("span"), "Review Running");
   revealNext();
   revealTimer = setInterval(revealNext, 850);
 }
@@ -619,14 +646,19 @@ function resetReview() {
   revealTimer = null;
   revealedCount = 0;
   document.querySelectorAll(".role-card").forEach((card) => card.classList.remove("revealed"));
-  runButton.disabled = false;
-  runButton.querySelector("span").textContent = "Run Committee Review";
+  if (runButton) {
+    runButton.disabled = false;
+    setText(runButton.querySelector("span"), "Run Committee Review");
+  }
   updateProgress();
 }
 
 function setView(viewName) {
   document.querySelectorAll(".view").forEach((view) => view.classList.remove("active"));
-  document.querySelector(`#${viewName}-view`).classList.add("active");
+  const view = document.querySelector(`#${viewName}-view`);
+  if (view) {
+    view.classList.add("active");
+  }
   document.querySelectorAll(".nav-button").forEach((button) => {
     button.classList.toggle("active", button.dataset.view === viewName);
   });
@@ -636,9 +668,9 @@ document.querySelectorAll(".nav-button").forEach((button) => {
   button.addEventListener("click", () => setView(button.dataset.view));
 });
 
-runButton.addEventListener("click", runReview);
-resetButton.addEventListener("click", resetReview);
-document.querySelector("#print-memo").addEventListener("click", () => window.print());
+onClick(runButton, runReview);
+onClick(resetButton, resetReview);
+onClick(document.querySelector("#print-memo"), () => window.print());
 
 renderRoles();
 renderSources();
