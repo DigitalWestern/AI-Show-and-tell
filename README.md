@@ -2,6 +2,10 @@
 
 Static web app for a five-minute show-and-tell demonstrating an AI-assisted investment committee workflow for Booz Allen Hamilton, with a credit-investment lens on bonds, loans, liquidity, maturities, and spread compensation.
 
+## Live app
+
+[Open the AI Investment Committee Demo](https://digitalwestern.github.io/AI-Show-and-tell/)
+
 ## How to run
 
 Open `index.html` directly in a browser, or host the folder with GitHub Pages. The app has no backend, no live AI calls, no external scripts, no CDNs, and no runtime network dependency except when a viewer chooses to open source links.
