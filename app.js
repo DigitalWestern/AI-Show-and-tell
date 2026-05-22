@@ -188,11 +188,61 @@ Write the Credit Bear Analyst card for a 5-minute demo. Include:
     "Fallback credit bear answer: the short case is not near-term distress. It is that a government-services borrower with FY2026 revenue pressure, delayed civil recovery, customer-trust headlines, and longer-dated unsecured notes may need to pay more spread than the market assumes. The key uncertainty is whether backlog and liquidity offset agency-level cancellation, funding, and reputation risk. Diligence should focus on maturity schedule, covenants, revolver usage, ratings, current bond prices, and spread versus federal IT peers."
 };
 
+const workflow = {
+  stages: [
+    {
+      title: "Evidence Pack",
+      summary: "Collect source-backed facts before any agent is allowed to write a thesis.",
+      output: "00_evidence_pack.md"
+    },
+    {
+      title: "Independent Agent Reviews",
+      summary: "Run Bull, Bear, Credit, Market, and Valuation agents separately against the same evidence.",
+      output: "01_agent_prompts.md and 02_agent_outputs.md"
+    },
+    {
+      title: "Cross-Examination",
+      summary: "Force the agents to challenge each other, downgrade weak claims, and define what would change their minds.",
+      output: "03_cross_examination.md"
+    },
+    {
+      title: "Scoring Matrix",
+      summary: "Weight the thesis on business quality, liquidity, downside, catalyst, value, evidence, and uncertainty.",
+      output: "04_scoring_matrix.md"
+    },
+    {
+      title: "Committee Chair Synthesis",
+      summary: "Make the final recommendation without introducing new facts.",
+      output: "05_final_committee_memo.md"
+    }
+  ],
+  scoring: [
+    ["Business quality", "15%"],
+    ["Balance sheet / liquidity", "15%"],
+    ["Downside risk", "15%"],
+    ["Catalyst clarity", "10%"],
+    ["Valuation or spread compensation", "20%"],
+    ["Evidence quality", "15%"],
+    ["Uncertainty level", "10%"]
+  ],
+  templates: [
+    ["Evidence Pack", "diligence_workflow/00_evidence_pack.md"],
+    ["Agent Prompts", "diligence_workflow/01_agent_prompts.md"],
+    ["Agent Outputs", "diligence_workflow/02_agent_outputs.md"],
+    ["Cross-Examination", "diligence_workflow/03_cross_examination.md"],
+    ["Scoring Matrix", "diligence_workflow/04_scoring_matrix.md"],
+    ["Final Committee Memo", "diligence_workflow/05_final_committee_memo.md"]
+  ]
+};
+
 let revealedCount = 0;
 let revealTimer = null;
 
 const roleList = document.querySelector("#role-list");
 const sourceList = document.querySelector("#source-list");
+const workflowStageList = document.querySelector("#workflow-stage-list");
+const scoringList = document.querySelector("#scoring-list");
+const templateList = document.querySelector("#template-list");
 const progressBar = document.querySelector("#progress-bar");
 const progressCopy = document.querySelector("#progress-copy");
 const runButton = document.querySelector("#run-review");
@@ -265,6 +315,38 @@ function renderMemo() {
   document.querySelector("#memo-questions").innerHTML = packet.memo.questions.map((item) => `<li>${item}</li>`).join("");
   document.querySelector("#memo-sources").innerHTML = packet.sources
     .map((source) => `<li><a href="${source.url}" target="_blank" rel="noreferrer">${source.title}</a>: ${source.note}</li>`)
+    .join("");
+}
+
+function renderWorkflow() {
+  workflowStageList.innerHTML = workflow.stages
+    .map(
+      (stage, index) => `
+        <li class="workflow-step">
+          <span>${index + 1}</span>
+          <div>
+            <h3>${stage.title}</h3>
+            <p>${stage.summary}</p>
+            <strong>Output: ${stage.output}</strong>
+          </div>
+        </li>
+      `
+    )
+    .join("");
+
+  scoringList.innerHTML = workflow.scoring
+    .map(
+      ([category, weight]) => `
+        <li>
+          <span>${category}</span>
+          <strong>${weight}</strong>
+        </li>
+      `
+    )
+    .join("");
+
+  templateList.innerHTML = workflow.templates
+    .map(([label, href]) => `<li><a href="${href}">${label}</a></li>`)
     .join("");
 }
 
@@ -345,6 +427,7 @@ document.querySelector("#print-memo").addEventListener("click", () => window.pri
 renderRoles();
 renderSources();
 renderMemo();
+renderWorkflow();
 promptEl.textContent = packet.prompt;
 fallbackEl.textContent = packet.fallback;
 updateProgress();

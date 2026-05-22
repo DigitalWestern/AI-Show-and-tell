@@ -16,6 +16,7 @@
       </div>
       <nav aria-label="Primary views">
         <button class="nav-button active" type="button" data-view="workspace">Committee Workspace</button>
+        <button class="nav-button" type="button" data-view="workflow">Diligence Formula</button>
         <button class="nav-button" type="button" data-view="memo">Investment Memo</button>
       </nav>
     </header>
@@ -117,6 +118,50 @@
             <ul id="source-list" class="source-list"></ul>
           </article>
         </section>
+      </section>
+
+      <section id="workflow-view" class="view workflow-shell" aria-labelledby="workflow-title">
+        <div class="workflow-hero">
+          <div>
+            <p class="system-label">Real diligence workflow</p>
+            <h2 id="workflow-title">Five-stage multi-agent process</h2>
+          </div>
+          <p>
+            The visible demo is a static packet. This workflow is the reusable formula for running the actual diligence with separate agents, debate, scoring, and an auditable final memo.
+          </p>
+        </div>
+
+        <div class="workflow-grid">
+          <article class="workflow-panel">
+            <div class="section-heading compact">
+              <div>
+                <p class="system-label">Procedure</p>
+                <h2>Workflow Stages</h2>
+              </div>
+            </div>
+            <ol id="workflow-stage-list" class="workflow-list"></ol>
+          </article>
+
+          <aside class="workflow-side">
+            <article class="rule-panel">
+              <p class="system-label">Gating rule</p>
+              <h2>No thesis outruns evidence</h2>
+              <p>No final thesis can be stronger than the weakest unsupported assumption.</p>
+            </article>
+
+            <article class="rule-panel">
+              <p class="system-label">Score weights</p>
+              <h2>Diligence Matrix</h2>
+              <ul id="scoring-list" class="score-list"></ul>
+            </article>
+
+            <article class="rule-panel">
+              <p class="system-label">Templates</p>
+              <h2>Runbook Files</h2>
+              <ul id="template-list" class="template-list"></ul>
+            </article>
+          </aside>
+        </div>
       </section>
 
       <section id="memo-view" class="view memo-shell" aria-labelledby="memo-title">

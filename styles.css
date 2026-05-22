@@ -480,6 +480,127 @@ details p {
   font-size: 0.86rem;
 }
 
+.workflow-shell {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+
+.workflow-hero,
+.workflow-panel,
+.rule-panel {
+  border: 1px solid var(--faint);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.workflow-hero {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 18px;
+  padding: 22px;
+}
+
+.workflow-hero p {
+  margin-bottom: 0;
+  color: #34434c;
+}
+
+.workflow-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+  gap: 18px;
+}
+
+.workflow-panel,
+.rule-panel {
+  padding: 18px;
+}
+
+.workflow-side {
+  display: grid;
+  gap: 18px;
+  align-self: start;
+}
+
+.workflow-list {
+  display: grid;
+  gap: 12px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.workflow-step {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--faint);
+  border-radius: var(--radius);
+  background: #fbfcfc;
+}
+
+.workflow-step > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #edf7f3;
+  color: var(--accent-strong);
+  font-weight: 850;
+}
+
+.workflow-step p {
+  margin-bottom: 8px;
+  color: #34434c;
+}
+
+.workflow-step strong {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.rule-panel p:last-child {
+  margin-bottom: 0;
+  color: #34434c;
+}
+
+.score-list,
+.template-list {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.score-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--faint);
+  color: #34434c;
+  font-size: 0.9rem;
+}
+
+.score-list li:last-child {
+  border-bottom: 0;
+}
+
+.template-list li {
+  padding: 9px 10px;
+  border: 1px solid var(--faint);
+  border-radius: var(--radius);
+  background: #fbfcfc;
+  font-weight: 750;
+}
+
 .memo-shell {
   width: min(1060px, 100%);
   margin: 0 auto;
@@ -560,6 +681,8 @@ details p {
   .topbar,
   .workspace-grid,
   .lower-grid,
+  .workflow-hero,
+  .workflow-grid,
   .memo-columns {
     grid-template-columns: 1fr;
   }
