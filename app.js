@@ -3,7 +3,7 @@ const packet = {
     name: "Booz Allen Hamilton Holding Corporation",
     ticker: "BAH",
     researchDate: "May 22, 2026",
-    recommendation: "Proceed to diligence"
+    recommendation: "Watchlist; no trade today"
   },
   sources: [
     {
@@ -138,14 +138,14 @@ const packet = {
     },
     {
       role: "Committee Chair",
-      title: "Recommendation and Next Diligence",
-      confidence: "Proceed, do not underwrite yet",
+      title: "Portfolio Decision",
+      confidence: "Pass for now; monitor pricing",
       tone: "normal",
       summary:
-        "Chair synthesis: advance to credit diligence, but do not underwrite until current spreads, covenants, and downside scenarios are built.",
-      strength: "Worth more work",
-      uncertainty: "Spread versus risk",
-      diligence: "Build a maturity-by-maturity credit view with current prices, yields, spreads, ratings, covenants, and downside scenarios.",
+        "Chair synthesis: the business is credible, but the committee does not have a reason to allocate capital unless the bonds offer a visible spread concession.",
+      strength: "Watchlist candidate",
+      uncertainty: "No proven mispricing",
+      diligence: "Only spend more time if current bond levels screen cheap versus peers and the downside case is survivable.",
       sources: ["fy26", "q2", "valuation", "debt", "treasury"]
     }
   ],
@@ -170,38 +170,44 @@ const packet = {
       "Which AI/cyber programs are real scaled revenue contributors versus branding around existing services work?",
       "What are the current prices, yields, spreads, ratings, and covenants for the term loan and each senior-note maturity?",
       "Does current credit spread compensate for contract, funding, and reputation risk versus CACI, Leidos, SAIC, ICF, and broader defense-services credit comps?",
-      "What evidence would make the committee stop diligence rather than continue?"
+      "What market price or spread would make this worth portfolio time, and what evidence would make the committee stop work?"
     ]
   },
   chairDecision: {
-    headline: "Chair logic: attractive credit question, incomplete investment case",
-    ruling: "Proceed to diligence because the business is durable enough to study, but the price evidence is not strong enough to underwrite.",
+    headline: "Chair view: credible company, no capital decision yet",
+    ruling:
+      "The chair would not approve a trade from this packet. Booz Allen is a real business with durable government demand, but the committee has not shown that the available bonds or loans compensate us for the revenue decline, Civil weakness, agency scrutiny, and headline risk.",
+    analysis: [
+      "The bull case gives us permission to keep looking: backlog is large, free cash flow was strong, and the company still sits in important defense, intelligence, cyber, and AI budgets. That matters because this is not a broken borrower or a distressed-credit screen.",
+      "The bear case prevents this from becoming an automatic quality-credit idea. FY2026 revenue fell, Civil revenue deteriorated, headcount came down, and the Treasury cancellation is exactly the kind of small-dollar event that can still matter if it signals customer-trust problems.",
+      "The missing piece is not more generic research. It is price. If the bonds trade wide enough to absorb the operating and headline risk, this can become a portfolio candidate. If they trade in line with cleaner peers, the chair should pass and spend time elsewhere."
+    ],
     weights: [
       {
-        label: "Supportive evidence",
-        point: "Large backlog, $951M of FY2026 free cash flow, 11.0% adjusted EBITDA margin, and national-security relevance argue against near-term distress."
+        label: "Most important pro",
+        point: "Large backlog, $951M of FY2026 free cash flow, and national-security relevance make near-term credit impairment unlikely."
       },
       {
-        label: "Negative evidence",
-        point: "FY2026 revenue declined 6.4%, Civil revenue fell sharply, headcount dropped, and Treasury cancellation shows reputation risk can affect contracts."
+        label: "Most important con",
+        point: "The revenue decline, Civil weakness, and Treasury issue make this a messier credit than the business-quality label suggests."
       },
       {
-        label: "Missing evidence",
-        point: "Current bond prices, yields, spreads, ratings, covenant detail, peer credit comps, and downside loss cases are not in the packet."
+        label: "Decision blocker",
+        point: "There is no current spread table showing that investors are paid for the risks."
       }
     ],
     decisions: [
       {
-        label: "Why not reject?",
-        point: "Cash flow, backlog, and mission relevance are too strong to dismiss the credit without price work."
+        label: "Current action",
+        point: "Do not buy. Put it on a watchlist and check bond levels before doing deeper work."
       },
       {
-        label: "Why not invest?",
-        point: "The committee cannot prove spread compensation, relative value, or downside protection yet."
+        label: "What would make it actionable?",
+        point: "BAH notes would need to trade wide enough versus CACI, Leidos, SAIC, ICF, and defense-services peers to compensate for Civil and reputation risk."
       },
       {
-        label: "What changes the answer?",
-        point: "Upgrade if BAH notes trade wide to peers with acceptable covenants; downgrade if agency risk spreads or spreads are already tight."
+        label: "When to stop",
+        point: "If spreads are tight to cleaner peers, or if more agency/customer issues appear, the chair should pass rather than keep researching."
       }
     ]
   },
@@ -341,7 +347,7 @@ const workflow = {
     ["Valuation / spread compensation", "20%", "1.5", "Current bond prices, yields, spreads, and peer comps are missing."],
     ["Evidence quality", "15%", "3.5", "Company filings and Reuters support the core facts; market pricing remains incomplete."],
     ["Uncertainty level", "10%", "2.5", "The weakest assumption is that risk is already priced."],
-    ["Weighted score", "100%", "2.85 / 5", "Supports proceed to diligence, not invest or underwrite."]
+    ["Weighted score", "100%", "2.85 / 5", "Supports watchlist, not a trade today."]
   ],
   nextDiligence: [
     "Build a maturity-by-maturity table for the term loan and 2028, 2029, 2033, and 2035 senior notes.",
@@ -350,9 +356,9 @@ const workflow = {
     "Create a downside case for Civil revenue, agency cancellation risk, and spread widening."
   ],
   conclusion: {
-    recommendation: "Proceed to diligence",
+    recommendation: "Watchlist; no trade today",
     summary:
-      "The agents agree Booz Allen is not a near-term distressed credit and remains strategically relevant, but they also agree the investment case is not underwritable yet. FY2026 showed real revenue pressure and Civil weakness, while cash flow and backlog remain supportive. The final blocker is price: without live bond spreads, peer comps, covenant detail, and a downside case, the committee should continue diligence rather than invest."
+      "The agents agree Booz Allen is not a near-term distressed credit and remains strategically relevant, but they also agree there is no actionable trade in the packet. FY2026 showed real revenue pressure and Civil weakness, while cash flow and backlog remain supportive. The final blocker is price: without live bond spreads, peer comps, covenant detail, and a downside case, the chair would keep it on watchlist rather than allocate capital."
   }
 };
 
@@ -381,6 +387,7 @@ const roleList = document.querySelector("#role-list");
 const sourceList = document.querySelector("#source-list");
 const chairHeadline = document.querySelector("#chair-headline");
 const chairRuling = document.querySelector("#chair-ruling");
+const chairAnalysis = document.querySelector("#chair-analysis");
 const chairWeights = document.querySelector("#chair-weights");
 const chairDecisions = document.querySelector("#chair-decisions");
 const workflowStageList = document.querySelector("#workflow-stage-list");
@@ -467,6 +474,7 @@ function renderMemo() {
 function renderChairDecision() {
   setText(chairHeadline, packet.chairDecision.headline);
   setText(chairRuling, packet.chairDecision.ruling);
+  setHTML(chairAnalysis, packet.chairDecision.analysis.map((item) => `<p>${item}</p>`).join(""));
   setHTML(chairWeights, packet.chairDecision.weights
     .map(
       (item) => `

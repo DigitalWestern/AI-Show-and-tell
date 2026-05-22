@@ -32,7 +32,7 @@ Core rule:
 
 > No final thesis can be stronger than the weakest unsupported assumption.
 
-For the Booz Allen demo, the correct conclusion remains `Proceed to diligence`, not `Invest / underwrite`, because the packet still lacks current bond prices, yields, spreads, full peer comps, covenant detail, and downside scenario math.
+For the Booz Allen demo, the conclusion is `Watchlist; no trade today`, because the packet still lacks current bond prices, yields, spreads, full peer comps, covenant detail, and downside scenario math.
 
 ## Files
 

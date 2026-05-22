@@ -434,6 +434,18 @@ nav {
   font-weight: 750;
 }
 
+.chair-analysis {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 16px;
+}
+
+.chair-analysis p {
+  margin: 0;
+  color: #34434c;
+  font-size: 0.95rem;
+}
+
 .chair-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
