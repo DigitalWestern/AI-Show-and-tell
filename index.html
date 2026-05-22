@@ -93,19 +93,24 @@
         </div>
 
         <section class="lower-grid">
-          <article class="prompt-panel">
+          <article class="chair-panel">
             <div class="section-heading compact">
               <div>
-                <p class="system-label">Optional live rerun</p>
-                <h2>Bear Analyst Prompt</h2>
+                <p class="system-label">Chair synthesis</p>
+                <h2 id="chair-headline"></h2>
               </div>
-              <button id="copy-prompt" class="secondary-action" type="button">Copy Prompt</button>
             </div>
-            <pre id="live-prompt"></pre>
-            <details>
-              <summary>Fallback answer if live AI is blocked</summary>
-              <p id="fallback-answer"></p>
-            </details>
+            <p id="chair-ruling" class="chair-ruling"></p>
+            <div class="chair-grid">
+              <section>
+                <h3>Evidence Weighing</h3>
+                <ul id="chair-weights" class="chair-list"></ul>
+              </section>
+              <section>
+                <h3>Decision Logic</h3>
+                <ul id="chair-decisions" class="chair-list"></ul>
+              </section>
+            </div>
           </article>
 
           <article class="source-panel">

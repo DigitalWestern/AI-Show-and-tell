@@ -70,7 +70,7 @@ const packet = {
       confidence: "Constructive, but conditional",
       tone: "normal",
       summary:
-        "Booz Allen remains a high-quality federal technology platform with unusually direct exposure to AI, cyber, defense modernization, intelligence, and mission software. The committee case is not that FY2026 was clean; it is that the company may be temporarily mispriced if national-security demand, backlog conversion, and margin discipline outlast civil-market turbulence.",
+        "Bull input: federal AI/cyber platform, $38.2B backlog, resilient margin, and strong FY2026 free cash flow.",
       strength: "Strong mission fit",
       uncertainty: "Backlog conversion timing",
       diligence: "Can management prove FY2026 pressure is temporary rather than the start of a lower-growth regime?",
@@ -82,7 +82,7 @@ const packet = {
       confidence: "High concern",
       tone: "risk",
       summary:
-        "The bear case is credible. FY2026 revenue declined 6.4%, Civil revenue fell sharply, headcount dropped, and one public contract cancellation shows how reputational and political risk can convert quickly into financial and headline pressure. A lower multiple could be justified if investors stop underwriting Booz Allen as a durable growth compounder.",
+        "Bear input: FY2026 revenue declined, Civil revenue fell sharply, headcount dropped, and Treasury turned reputation risk into contract risk.",
       strength: "Risk is visible, not theoretical",
       uncertainty: "Civil recovery and political spillover",
       diligence: "What percentage of revenue is tied to agencies or contract vehicles vulnerable to cancellation, non-renewal, or slower awards?",
@@ -94,7 +94,7 @@ const packet = {
       confidence: "Watch closely",
       tone: "watch",
       summary:
-        "The risk profile is dominated by U.S. government exposure. Cost-reimbursable work can reduce execution risk, but funding delays, shutdowns, procurement protests, agency-level scrutiny, and reputation issues can still defer revenue or impair recompete odds. The key control question is whether the company has enough breadth across defense, intelligence, and civil customers to absorb discrete shocks.",
+        "Risk input: government concentration, funding delays, agency scrutiny, and recompete exposure decide how much backlog really converts.",
       strength: "Large backlog offers visibility",
       uncertainty: "Funding cadence and agency concentration",
       diligence: "How much of funded and unfunded backlog is attached to programs with near-term recompete or budget uncertainty?",
@@ -106,7 +106,7 @@ const packet = {
       confidence: "Creditworthy, spread-sensitive",
       tone: "normal",
       summary:
-        "The credit question is different from the equity question. Booz Allen has a meaningful debt stack, but it also has recurring government-contract revenue, large backlog, strong FY2026 free cash flow, and Q3 covenant compliance. For bond or loan investors, the debate is whether FY2026 revenue pressure and customer-trust headlines deserve a wider spread, not whether the company is near-term distressed.",
+        "Credit input: not near-term distressed, but the debt stack only works as an idea if bond spreads pay for Civil and headline risk.",
       strength: "Liquidity and maturity runway",
       uncertainty: "Spread compensation for headline risk",
       diligence: "Which part of the capital structure offers the best risk-adjusted entry: term loan, shorter notes, or longer 2033/2035 notes?",
@@ -118,7 +118,7 @@ const packet = {
       confidence: "Mixed sector setup",
       tone: "watch",
       summary:
-        "The last six months show two competing narratives: demand for AI, cyber, defense modernization, and national-security technology remains strategically important, while federal funding timing and contractor scrutiny have become more disruptive. For a demo packet, the sector context should be framed as opportunity with a sharper procurement-risk overlay.",
+        "Market input: national-security demand is resilient, but federal funding timing and contractor scrutiny are a tougher backdrop.",
       strength: "AI/cyber demand remains mission-critical",
       uncertainty: "Pace of agency awards and civil rebound",
       diligence: "Which buying centers are accelerating AI/cyber awards, and which are pausing or insourcing work?",
@@ -130,7 +130,7 @@ const packet = {
       confidence: "Needs comp work",
       tone: "watch",
       summary:
-        "At roughly $9.2B of equity value and $12.5B of enterprise value, Booz Allen no longer screens like a no-questions growth story. For credit, the relative-value question should compare BAH notes and loans against government-services and defense-IT peers on leverage, free-cash-flow durability, maturity, coupon/spread, call protection, liquidity, and event risk. The demo should avoid live trading levels unless a current bond quote source is available.",
+        "Valuation input: the market has repriced Booz Allen lower, but cheapness is unproven without live bond quotes and peer spreads.",
       strength: "Credit may be cleaner than equity",
       uncertainty: "Where spreads sit versus peers",
       diligence: "Are the 2028/2029 notes priced for stability while the 2033/2035 notes pay enough for duration and headline risk?",
@@ -142,7 +142,7 @@ const packet = {
       confidence: "Proceed, do not underwrite yet",
       tone: "normal",
       summary:
-        "The committee should advance Booz Allen to a credit diligence pass, not an investment recommendation. The attractive angle is a federal AI/cyber platform with backlog, free cash flow, and national-security relevance. The gating issue is whether FY2026 weakness, civil restructuring, funding delays, and reputation risk are adequately compensated in the available bonds or loans.",
+        "Chair synthesis: advance to credit diligence, but do not underwrite until current spreads, covenants, and downside scenarios are built.",
       strength: "Worth more work",
       uncertainty: "Spread versus risk",
       diligence: "Build a maturity-by-maturity credit view with current prices, yields, spreads, ratings, covenants, and downside scenarios.",
@@ -171,6 +171,38 @@ const packet = {
       "What are the current prices, yields, spreads, ratings, and covenants for the term loan and each senior-note maturity?",
       "Does current credit spread compensate for contract, funding, and reputation risk versus CACI, Leidos, SAIC, ICF, and broader defense-services credit comps?",
       "What evidence would make the committee stop diligence rather than continue?"
+    ]
+  },
+  chairDecision: {
+    headline: "Chair logic: attractive credit question, incomplete investment case",
+    ruling: "Proceed to diligence because the business is durable enough to study, but the price evidence is not strong enough to underwrite.",
+    weights: [
+      {
+        label: "Supportive evidence",
+        point: "Large backlog, $951M of FY2026 free cash flow, 11.0% adjusted EBITDA margin, and national-security relevance argue against near-term distress."
+      },
+      {
+        label: "Negative evidence",
+        point: "FY2026 revenue declined 6.4%, Civil revenue fell sharply, headcount dropped, and Treasury cancellation shows reputation risk can affect contracts."
+      },
+      {
+        label: "Missing evidence",
+        point: "Current bond prices, yields, spreads, ratings, covenant detail, peer credit comps, and downside loss cases are not in the packet."
+      }
+    ],
+    decisions: [
+      {
+        label: "Why not reject?",
+        point: "Cash flow, backlog, and mission relevance are too strong to dismiss the credit without price work."
+      },
+      {
+        label: "Why not invest?",
+        point: "The committee cannot prove spread compensation, relative value, or downside protection yet."
+      },
+      {
+        label: "What changes the answer?",
+        point: "Upgrade if BAH notes trade wide to peers with acceptable covenants; downgrade if agency risk spreads or spreads are already tight."
+      }
     ]
   },
   prompt: `You are the Credit Bear Analyst in a simulated investment committee reviewing Booz Allen Hamilton (BAH) bonds and loans.
@@ -329,6 +361,10 @@ let revealTimer = null;
 
 const roleList = document.querySelector("#role-list");
 const sourceList = document.querySelector("#source-list");
+const chairHeadline = document.querySelector("#chair-headline");
+const chairRuling = document.querySelector("#chair-ruling");
+const chairWeights = document.querySelector("#chair-weights");
+const chairDecisions = document.querySelector("#chair-decisions");
 const workflowStageList = document.querySelector("#workflow-stage-list");
 const agentRunList = document.querySelector("#agent-run-list");
 const disagreementList = document.querySelector("#disagreement-list");
@@ -341,8 +377,6 @@ const progressBar = document.querySelector("#progress-bar");
 const progressCopy = document.querySelector("#progress-copy");
 const runButton = document.querySelector("#run-review");
 const resetButton = document.querySelector("#reset-review");
-const promptEl = document.querySelector("#live-prompt");
-const fallbackEl = document.querySelector("#fallback-answer");
 
 function sourceById(id) {
   return packet.sources.find((source) => source.id === id);
@@ -409,6 +443,31 @@ function renderMemo() {
   document.querySelector("#memo-questions").innerHTML = packet.memo.questions.map((item) => `<li>${item}</li>`).join("");
   document.querySelector("#memo-sources").innerHTML = packet.sources
     .map((source) => `<li><a href="${source.url}" target="_blank" rel="noreferrer">${source.title}</a>: ${source.note}</li>`)
+    .join("");
+}
+
+function renderChairDecision() {
+  chairHeadline.textContent = packet.chairDecision.headline;
+  chairRuling.textContent = packet.chairDecision.ruling;
+  chairWeights.innerHTML = packet.chairDecision.weights
+    .map(
+      (item) => `
+        <li>
+          <span>${item.label}</span>
+          <strong>${item.point}</strong>
+        </li>
+      `
+    )
+    .join("");
+  chairDecisions.innerHTML = packet.chairDecision.decisions
+    .map(
+      (item) => `
+        <li>
+          <span>${item.label}</span>
+          <strong>${item.point}</strong>
+        </li>
+      `
+    )
     .join("");
 }
 
@@ -573,31 +632,17 @@ function setView(viewName) {
   });
 }
 
-async function copyPrompt() {
-  try {
-    await navigator.clipboard.writeText(packet.prompt);
-    document.querySelector("#copy-prompt").textContent = "Copied";
-    window.setTimeout(() => {
-      document.querySelector("#copy-prompt").textContent = "Copy Prompt";
-    }, 1200);
-  } catch {
-    document.querySelector("#copy-prompt").textContent = "Select Text";
-  }
-}
-
 document.querySelectorAll(".nav-button").forEach((button) => {
   button.addEventListener("click", () => setView(button.dataset.view));
 });
 
 runButton.addEventListener("click", runReview);
 resetButton.addEventListener("click", resetReview);
-document.querySelector("#copy-prompt").addEventListener("click", copyPrompt);
 document.querySelector("#print-memo").addEventListener("click", () => window.print());
 
 renderRoles();
 renderSources();
 renderMemo();
+renderChairDecision();
 renderWorkflow();
-promptEl.textContent = packet.prompt;
-fallbackEl.textContent = packet.fallback;
 updateProgress();
