@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Static AI investment committee demo for Booz Allen Hamilton.">
+    <title>AI Investment Committee | Booz Allen Demo</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231f7a5a'/%3E%3Cpath d='M8 22h16M10 20V11h4v9m4 0V8h4v12M8 24h16' stroke='white' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="system-label">Static demo packet</p>
+        <h1>AI Investment Committee</h1>
+      </div>
+      <nav aria-label="Primary views">
+        <button class="nav-button active" type="button" data-view="workspace">Committee Workspace</button>
+        <button class="nav-button" type="button" data-view="memo">Investment Memo</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="notice" aria-label="Demo caveats">
+        <strong>Demo only.</strong>
+        Public information only. Not investment advice. This page uses a prebuilt static research packet and does not call AI models, market-data APIs, tracking scripts, CDNs, or backend services.
+      </section>
+
+      <section id="workspace-view" class="view active" aria-labelledby="workspace-title">
+        <div class="workspace-grid">
+          <aside class="company-panel">
+            <div class="company-header">
+              <div>
+                <p class="system-label">Company profile</p>
+                <h2 id="workspace-title">Booz Allen Hamilton</h2>
+              </div>
+              <span class="ticker">BAH</span>
+            </div>
+
+            <p class="company-summary">
+              Advanced technology and consulting contractor serving U.S. defense, intelligence, and civil-government missions, with AI, cyber, digital engineering, and mission technology positioned as core growth themes.
+            </p>
+
+            <dl class="metrics-list">
+              <div>
+                <dt>Sector</dt>
+                <dd>Government services / technology consulting</dd>
+              </div>
+              <div>
+                <dt>Research refreshed</dt>
+                <dd>May 22, 2026</dd>
+              </div>
+              <div>
+                <dt>Market cap / EV</dt>
+                <dd>Approx. $9.2B / $12.5B</dd>
+              </div>
+              <div>
+                <dt>Debt instruments</dt>
+                <dd>Term loan, revolver, senior notes</dd>
+              </div>
+              <div>
+                <dt>Latest official quarter reviewed</dt>
+                <dd>Q3 FY2026, ended Dec. 31, 2025</dd>
+              </div>
+            </dl>
+
+            <button id="run-review" class="primary-action" type="button">
+              <span>Run Committee Review</span>
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+
+            <div class="status-card">
+              <p class="status-label">Procedure status</p>
+              <div class="progress-track" aria-hidden="true">
+                <span id="progress-bar"></span>
+              </div>
+              <p id="progress-copy">Ready to reveal a prebuilt AI research workflow.</p>
+            </div>
+          </aside>
+
+          <section class="committee-panel" aria-label="Committee review roles">
+            <div class="section-heading">
+              <div>
+                <p class="system-label">Role sequence</p>
+                <h2>Committee Review</h2>
+              </div>
+              <button id="reset-review" class="secondary-action" type="button">Reset</button>
+            </div>
+
+            <div id="role-list" class="role-list"></div>
+          </section>
+        </div>
+
+        <section class="lower-grid">
+          <article class="prompt-panel">
+            <div class="section-heading compact">
+              <div>
+                <p class="system-label">Optional live rerun</p>
+                <h2>Bear Analyst Prompt</h2>
+              </div>
+              <button id="copy-prompt" class="secondary-action" type="button">Copy Prompt</button>
+            </div>
+            <pre id="live-prompt"></pre>
+            <details>
+              <summary>Fallback answer if live AI is blocked</summary>
+              <p id="fallback-answer"></p>
+            </details>
+          </article>
+
+          <article class="source-panel">
+            <div class="section-heading compact">
+              <div>
+                <p class="system-label">Packet evidence</p>
+                <h2>Source Notes</h2>
+              </div>
+            </div>
+            <ul id="source-list" class="source-list"></ul>
+          </article>
+        </section>
+      </section>
+
+      <section id="memo-view" class="view memo-shell" aria-labelledby="memo-title">
+        <div class="memo-toolbar">
+          <div>
+            <p class="system-label">Final artifact</p>
+            <h2 id="memo-title">Investment Committee Memo</h2>
+          </div>
+          <button id="print-memo" class="primary-action print-button" type="button">Print Memo</button>
+        </div>
+
+        <article class="memo-page" aria-label="Printable investment committee memo">
+          <div class="memo-topline">
+            <div>
+              <p class="system-label">AI-assisted public-information packet</p>
+              <h2>Booz Allen Hamilton Holding Corporation</h2>
+            </div>
+            <div class="memo-rec">
+              <span>Committee Recommendation</span>
+              <strong>Proceed to diligence</strong>
+            </div>
+          </div>
+
+          <section class="memo-section">
+            <h3>Investment Question</h3>
+            <p>
+              Do Booz Allen bonds or loans offer enough spread compensation for a government-services credit with large backlog, solid liquidity, moderate leverage, FY2026 revenue pressure, and customer/reputation risk?
+            </p>
+          </section>
+
+          <div class="memo-columns">
+            <section class="memo-section">
+              <h3>Strongest Thesis Points</h3>
+              <ul id="memo-thesis"></ul>
+            </section>
+            <section class="memo-section">
+              <h3>Biggest Risks</h3>
+              <ul id="memo-risks"></ul>
+            </section>
+          </div>
+
+          <section class="memo-section">
+            <h3>Top Diligence Questions</h3>
+            <ol id="memo-questions"></ol>
+          </section>
+
+          <section class="memo-section source-footnotes">
+            <h3>Source List</h3>
+            <ol id="memo-sources"></ol>
+          </section>
+        </article>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
