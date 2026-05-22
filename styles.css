@@ -515,8 +515,17 @@ details p {
 }
 
 .workflow-panel,
-.rule-panel {
+.rule-panel,
+.run-section {
   padding: 18px;
+}
+
+.run-section {
+  margin-top: 18px;
+  border: 1px solid var(--faint);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
 
 .workflow-side {
@@ -589,6 +598,31 @@ details p {
   font-size: 0.9rem;
 }
 
+.score-list span {
+  display: grid;
+  gap: 3px;
+}
+
+.score-list small {
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.3;
+}
+
+.score-list strong {
+  display: grid;
+  min-width: 70px;
+  color: var(--accent-strong);
+  text-align: right;
+}
+
+.score-list em {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
 .score-list li:last-child {
   border-bottom: 0;
 }
@@ -599,6 +633,88 @@ details p {
   border-radius: var(--radius);
   background: #fbfcfc;
   font-weight: 750;
+}
+
+.agent-run-list,
+.disagreement-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.agent-run-card,
+.disagreement-card {
+  padding: 14px;
+  border: 1px solid var(--faint);
+  border-radius: var(--radius);
+  background: #fbfcfc;
+}
+
+.agent-run-card.risk {
+  border-color: #e5c7c1;
+}
+
+.agent-run-card.watch {
+  border-color: #e5d4b8;
+}
+
+.agent-run-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.agent-run-card p {
+  color: #2f3f49;
+}
+
+.agent-run-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.agent-run-grid div {
+  padding: 10px;
+  border: 1px solid var(--faint);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.agent-run-grid span,
+.disagreement-card dt {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.agent-run-grid strong {
+  display: block;
+  font-size: 0.84rem;
+}
+
+.disagreement-card dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 10px 0 0;
+}
+
+.disagreement-card div {
+  padding: 10px;
+  border: 1px solid var(--faint);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.disagreement-card dd {
+  margin: 0;
+  color: #2f3f49;
+  font-size: 0.88rem;
 }
 
 .memo-shell {
@@ -683,6 +799,8 @@ details p {
   .lower-grid,
   .workflow-hero,
   .workflow-grid,
+  .agent-run-grid,
+  .disagreement-card dl,
   .memo-columns {
     grid-template-columns: 1fr;
   }

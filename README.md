@@ -2,7 +2,7 @@
 
 Static web app for a five-minute show-and-tell demonstrating an AI-assisted investment committee workflow for Booz Allen Hamilton, with a credit-investment lens on bonds, loans, liquidity, maturities, and spread compensation.
 
-The repo now also includes a reusable real-diligence runbook. The site remains static, but the workflow files make the actual multi-agent process explicit and repeatable.
+The repo now also includes a reusable real-diligence runbook and an actual Booz Allen diligence-run tab. The site remains static, but it shows the evidence pack, agent disagreement, scorecard, and final committee conclusion.
 
 ## Live app
 
@@ -16,11 +16,11 @@ Open `index.html` directly in a browser, or host the folder with GitHub Pages. T
 
 The research packet is prebuilt on purpose. The button stages the committee workflow so the presenter can explain the procedure without pretending the app is making a live model call.
 
-The static packet should not be treated as proof that five agents independently debated the thesis. For that, use the files in `diligence_workflow/`.
+The static packet should not be treated as live AI orchestration. The `Diligence Run` tab shows a captured diligence pass using the formula in `diligence_workflow/`.
 
 ## Real diligence workflow
 
-Use this sequence when you want to run the actual process manually in ChatGPT, Codex, or another AI workspace:
+Use this sequence when you want to rerun the process manually in ChatGPT, Codex, or another AI workspace:
 
 1. Build an evidence pack with only source-backed facts.
 2. Run independent Bull, Bear, Credit, Market, and Valuation agents.

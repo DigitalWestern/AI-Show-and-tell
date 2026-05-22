@@ -16,7 +16,7 @@
       </div>
       <nav aria-label="Primary views">
         <button class="nav-button active" type="button" data-view="workspace">Committee Workspace</button>
-        <button class="nav-button" type="button" data-view="workflow">Diligence Formula</button>
+        <button class="nav-button" type="button" data-view="workflow">Diligence Run</button>
         <button class="nav-button" type="button" data-view="memo">Investment Memo</button>
       </nav>
     </header>
@@ -60,8 +60,8 @@
                 <dd>Term loan, revolver, senior notes</dd>
               </div>
               <div>
-                <dt>Latest official quarter reviewed</dt>
-                <dd>Q3 FY2026, ended Dec. 31, 2025</dd>
+                <dt>Latest official period reviewed</dt>
+                <dd>FY2026, ended Mar. 31, 2026</dd>
               </div>
             </dl>
 
@@ -123,11 +123,11 @@
       <section id="workflow-view" class="view workflow-shell" aria-labelledby="workflow-title">
         <div class="workflow-hero">
           <div>
-            <p class="system-label">Real diligence workflow</p>
-            <h2 id="workflow-title">Five-stage multi-agent process</h2>
+            <p class="system-label">Actual diligence run</p>
+            <h2 id="workflow-title">Booz Allen credit review</h2>
           </div>
           <p>
-            The visible demo is a static packet. This workflow is the reusable formula for running the actual diligence with separate agents, debate, scoring, and an auditable final memo.
+            A source-backed diligence pass using separate agent views, explicit disagreement, scoring, and a final committee conclusion. This is still public-information research, not investment advice.
           </p>
         </div>
 
@@ -135,8 +135,8 @@
           <article class="workflow-panel">
             <div class="section-heading compact">
               <div>
-                <p class="system-label">Procedure</p>
-                <h2>Workflow Stages</h2>
+                <p class="system-label">Evidence pack</p>
+                <h2>What the agents used</h2>
               </div>
             </div>
             <ol id="workflow-stage-list" class="workflow-list"></ol>
@@ -144,24 +144,54 @@
 
           <aside class="workflow-side">
             <article class="rule-panel">
-              <p class="system-label">Gating rule</p>
-              <h2>No thesis outruns evidence</h2>
-              <p>No final thesis can be stronger than the weakest unsupported assumption.</p>
+              <p class="system-label">Final conclusion</p>
+              <h2 id="run-recommendation"></h2>
+              <p id="run-conclusion"></p>
             </article>
 
             <article class="rule-panel">
-              <p class="system-label">Score weights</p>
-              <h2>Diligence Matrix</h2>
+              <p class="system-label">Scorecard</p>
+              <h2>Weighted view</h2>
               <ul id="scoring-list" class="score-list"></ul>
             </article>
 
             <article class="rule-panel">
-              <p class="system-label">Templates</p>
-              <h2>Runbook Files</h2>
+              <p class="system-label">Next diligence</p>
+              <h2>Before underwriting</h2>
               <ul id="template-list" class="template-list"></ul>
             </article>
           </aside>
         </div>
+
+        <section class="run-section" aria-labelledby="agents-title">
+          <div class="section-heading compact">
+            <div>
+              <p class="system-label">Independent agents</p>
+              <h2 id="agents-title">Agent conclusions</h2>
+            </div>
+          </div>
+          <div id="agent-run-list" class="agent-run-list"></div>
+        </section>
+
+        <section class="run-section" aria-labelledby="debate-title">
+          <div class="section-heading compact">
+            <div>
+              <p class="system-label">Cross-examination</p>
+              <h2 id="debate-title">Where the agents disagreed</h2>
+            </div>
+          </div>
+          <div id="disagreement-list" class="disagreement-list"></div>
+        </section>
+
+        <section class="run-section" aria-labelledby="source-run-title">
+          <div class="section-heading compact">
+            <div>
+              <p class="system-label">Source trail</p>
+              <h2 id="source-run-title">Evidence links</h2>
+            </div>
+          </div>
+          <ul id="source-run-list" class="source-list"></ul>
+        </section>
       </section>
 
       <section id="memo-view" class="view memo-shell" aria-labelledby="memo-title">
